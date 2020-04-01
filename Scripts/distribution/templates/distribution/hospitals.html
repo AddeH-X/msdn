@@ -1,0 +1,22 @@
+{% extends "distribution/base.html" %}
+
+{% block header %}
+<h2>Hospitals</h2>
+<h3><a href="{% url 'distribution:new_hospital' %}">Add new hospital</a></h3>
+{% endblock header %}
+
+{% block content %}
+<ul>
+    {% for hospital in hospitals %}
+    <li>
+        <h3>
+            <a href="{% url 'distribution:hospital' hospital.id %}">{{hospital.name}}</a>
+        </h3>
+        <h4>{{hospital.address}}</h4>
+    </li>
+    {% empty %}
+    <li>No hospitals have been added yet.</li>
+    {% endfor%}
+</ul>
+
+{% endblock content %}

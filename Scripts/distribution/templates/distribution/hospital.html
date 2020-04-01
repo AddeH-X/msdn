@@ -1,0 +1,31 @@
+{% extends "distribution/base.html" %}
+
+{% block header %}
+<h2>{{hospital.name}}</h2>
+<h3>{{hospital.address}}</h3>
+{% endblock header %}
+
+{% block content %}
+<h3>
+    <a href="{% url 'distribution:add_need' hospital.id %}">add need</a>
+</h3>
+
+    {% for need in needs %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        <h4>{{need.name}}
+            <small><a href="{% url 'distribution:edit_need' need.id %}">edit need</a>
+            </small>
+        </h4>
+        </div>
+        <div class="panel-body">
+        <h5>
+           need_num:  {{need.need_num}}  urgency: {{need.urgency}}%
+        </h5>
+        </div>
+    </div><!--panel -->
+{% empty %}
+        This hospital's medical supplies are enough.
+    {% endfor %}
+
+{% endblock content %}
